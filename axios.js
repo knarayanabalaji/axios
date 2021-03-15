@@ -9,7 +9,7 @@ app.engine('.html', require('ejs').__express);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // app.get('/', (req, res) => {
 
@@ -64,4 +64,6 @@ app.get('/user_subscription', (req, res) => {
     .catch(console.error);
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
